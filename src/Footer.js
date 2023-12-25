@@ -7,7 +7,7 @@ export default function Footer() {
     <div className="footer">
       {" "}
       <a
-        href="https://github.com/MpofuMoud/my-weather-app-project"
+        href="https://github.com/MpofuMoud/React-weather-app"
         target="_blank"
         rel="noreferrer"
       >
@@ -15,7 +15,7 @@ export default function Footer() {
       </a>
       ,Hosted on
       <a
-        href="https://imaginative-bavarois-a5b0e8.netlify.app"
+        href="https://luxury-kulfi-36e999.netlify.app/"
         target="_blank"
         rel="noreferrer"
       >
