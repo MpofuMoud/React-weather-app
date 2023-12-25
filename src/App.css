@@ -1,38 +1,100 @@
-.App {
+body {
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/102/018/original/beautiful-clouds.jpg?1698332725");
+}
+.container {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  display: block;
   text-align: center;
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 20px;
+  border: solid 2px rgb(32, 183, 247);
+  border-radius: 20px;
+  background-color: rgb(170, 226, 236);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.searchButton {
+  background: #0000ff;
   color: white;
+  border: 2px solid #0000ff;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px rgba(105, 50, 124, 0.2);
+  transition: all 200 ms ease-in-out;
+}
+.currentButton {
+  background: green;
+  color: white;
+  border: 2px solid #a6ff0002;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px 2px rgba(105, 50, 124, 0.2);
+  transition: all 200 ms ease-in-out;
+}
+.currentButton:hover {
+  cursor: pointer;
+  color: #000000;
+  background: #ffffff;
+}
+.searchButton:hover {
+  cursor: pointer;
+  color: #000000;
+  background: #ffffff;
 }
 
-.App-link {
-  color: #61dafb;
+.location {
+  font-size: 40px;
+  margin: 10px 0;
+  padding: 20px;
+  font-weight: bolder;
+  line-height: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.date {
+  font-size: 12px;
+  font-style: italic;
+  padding: 10px;
+  line-height: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.temperature {
+  font-weight: bolder;
+  font-size: 40px;
+}
+.units {
+  font-size: 15px;
+}
+
+p {
+  font-family: cursive;
+  font-size: 10px;
+  font-weight: lighter;
+}
+.weather {
+  list-style-type: none;
+  text-align: center;
+  font-size: 13px;
+  color: black;
+  margin-top: 15px auto;
+  font-weight: bold;
+}
+.type {
+  color: black;
+}
+
+.min,
+.weather-forecast-day,
+.type {
+  opacity: 0.7;
+}
+.header {
+  color: rgb(51, 120, 224);
+  font-size: 15px;
+  font-family: cursive;
+  font-weight: lighter;
+}
+.description,
+.update {
+  text-align: left;
+  margin-left: 40px;
+  opacity: 0.8;
 }
