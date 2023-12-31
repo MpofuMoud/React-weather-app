@@ -1,4 +1,6 @@
+import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+
 import City from "./City";
 import Conditions from "./conditions";
 import Forecast from "./Forecast";
