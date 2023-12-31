@@ -61,7 +61,12 @@ body {
   font-size: 40px;
 }
 .units {
-  font-size: 15px;
+  font-size: 18px;
+  position: relative;
+  top: -20px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1;
 }
 
 p {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
+import WeatherTemperature from "./WeatherTemp";
 
 import "./App.css";
 
@@ -80,13 +81,13 @@ export default function Weather() {
           <div className="row">
             <div className="col-6">
               <div className="condition">
-                <img src={icon} alt="" id="icon" />
+                <img src={icon} alt="" id="icon" size={52} />
+                <div className="text-capitalize">{description}</div>
 
                 <span className="float-left temperature">
-                  <span id="temperature">{Math.round(temperature)}</span>℃
+                  <WeatherTemperature celsius={temperature} />
                 </span>
               </div>
-              <div className="text-capitalize">{description}</div>
             </div>
 
             <div className="col-6">
