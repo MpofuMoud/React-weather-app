@@ -34,13 +34,28 @@ export default function Weather() {
     );
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fa4d98a1b55bfa6e99bb8f32851d7b49&units=metric`;
+    axios.get(url).then(handleResponse);
+  }
+
+  function handleCity(event) {
+    setCity(event.target.value);
+  }
+
   if (ready) {
     return (
       <div className="city">
         <div className="row">
           <div className="col">
-            <form className="search-form">
-              <input type="text" id="search" placeholder="🔍 Change City...." />
+            <form className="search-form" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                id="search"
+                placeholder="🔍 Change City...."
+                onChange={handleCity}
+              />
               <input
                 className="searchButton"
                 type="submit"
@@ -99,9 +114,32 @@ export default function Weather() {
       </div>
     );
   } else {
-    let city = "Krakow";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fa4d98a1b55bfa6e99bb8f32851d7b49&units=metric`;
-    axios.get(apiUrl).then(handleResponse);
-    return "loading";
+    return (
+      <div className="city">
+        <div className="row">
+          <div className="col">
+            <form className="search-form" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                id="search"
+                placeholder="🔍 Search City...."
+                onChange={handleCity}
+              />
+              <input
+                className="searchButton"
+                type="submit"
+                id="searchButton"
+                value="search"
+              />
+            </form>
+          </div>
+          <div className="col">
+            <button type="button" className="currentButton" id="currentButton">
+              Current Location
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
