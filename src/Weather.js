@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 
 import "./App.css";
 
@@ -15,6 +16,7 @@ export default function Weather() {
   let [icon, setIcon] = useState("");
   let [temp_max, setTemp_max] = useState("");
   let [temp_min, setTemp_min] = useState("");
+  let [date, setDate] = useState("");
   function handleResponse(response) {
     console.log(response.data);
     setReady(true);
@@ -26,6 +28,7 @@ export default function Weather() {
     setDescription(response.data.weather[0].description);
     setHumidity(response.data.main.humidity);
     setWind(response.data.wind.speed);
+    setDate(new Date(response.data.dt * 1000));
     setIcon(
       `https://openweathermap.org/img/w/${response.data.weather[0].icon}.png`
     );
@@ -54,10 +57,9 @@ export default function Weather() {
         </div>
         <h1 className="location">{city}</h1>
 
-        <div className="country">{country}</div>
-        <div className="update">
-          <small>Last updated on:</small>
-          <span className="date">date</span>
+        <div className="country fw-bold">{country}</div>
+        <div className="update fw-semibold">
+          <FormattedDate date={date} />
         </div>
         <div className="description">
           <div className="row">
@@ -69,18 +71,18 @@ export default function Weather() {
                   <span id="temperature">{Math.round(temperature)}</span>℃
                 </span>
               </div>
-              <div>{description}</div>
+              <div className="text-capitalize">{description}</div>
             </div>
 
             <div className="col-6">
               <ul className="conditions">
                 <li>
                   <span className="type">Max temp: </span>
-                  <span id="feels"> {Math.round(temp_max)}</span>℃
+                  <span id="max"> {Math.round(temp_max)}</span>℃
                 </li>
                 <li>
                   <span className="type">Min temp: </span>
-                  <span id="feels"> {Math.round(temp_min)}</span>℃
+                  <span id="min "> {Math.round(temp_min)}</span>℃
                 </li>
                 <li>
                   <span className="type">Humidity: </span>
@@ -88,7 +90,7 @@ export default function Weather() {
                 </li>
                 <li>
                   <span className="type">Wind speed: </span>
-                  <span id="wind">{wind} </span>m/sec
+                  <span id="wind">{wind} </span>km/h
                 </li>
               </ul>
             </div>
