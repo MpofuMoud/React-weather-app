@@ -8,7 +8,6 @@ import Forecast from "./Forecast";
 import "./App.css";
 
 export default function Weather(props) {
-  let [ready, setReady] = useState(false);
   let [city, setCity] = useState(props.city);
   let [weather, setWeather] = useState("");
 
