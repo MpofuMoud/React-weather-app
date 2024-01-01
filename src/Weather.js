@@ -88,12 +88,16 @@ export default function Weather(props) {
           <div className="row">
             <div className="col-6">
               <div className="condition">
-                <img src={icon} alt="" />
-                <div className="text-capitalize">{description}</div>
+                <div className="row">
+                  <div className="col">
+                    <img src={icon} alt="" />
+                  </div>
 
-                <span className="float-left temperature">
-                  <WeatherTemperature celsius={temperature} />
-                </span>
+                  <div className=" col">
+                    <WeatherTemperature celsius={temperature} />
+                    <div className="text-capitalize">{description}</div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -101,26 +105,26 @@ export default function Weather(props) {
               <ul className="conditions">
                 <li>
                   <span className="type">Feels like: </span>
-                  <span id="max"> {Math.round(feels)}</span>℃
+                  <span id="max"> {Math.round(feels)}</span> ℃
                 </li>
                 <li>
                   <span className="type">Pressure: </span>
-                  <span id="min "> {Math.round(pressure)}</span>Pa
+                  <span id="min "> {Math.round(pressure)}</span> Pa
                 </li>
                 <li>
                   <span className="type">Humidity: </span>
-                  <span id="humidity">{humidity} </span>%
+                  <span id="humidity">{humidity} </span> %
                 </li>
                 <li>
                   <span className="type">Wind speed: </span>
-                  <span id="wind">{wind} </span>km/h
+                  <span id="wind">{wind} </span> km/h
                 </li>
               </ul>
             </div>
           </div>
+          <hr />
+          <Forecast city="Krakow" />
         </div>
-        <hr />
-        <Forecast city="Krakow" />
       </div>
     );
   } else {
