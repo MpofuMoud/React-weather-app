@@ -16,28 +16,29 @@ export default function Weather(props) {
   let [humidity, setHumidity] = useState("");
   let [wind, setWind] = useState("");
   let [icon, setIcon] = useState("");
-  let [temp_max, setTemp_max] = useState("");
-  let [temp_min, setTemp_min] = useState("");
+  let [feels, setFeels] = useState("");
+  let [pressure, setPressure] = useState("");
   let [date, setDate] = useState("");
   function handleResponse(response) {
     console.log(response.data);
     setReady(true);
-    setCity(response.data.name);
-    setCountry(response.data.sys.country);
-    setTemperature(response.data.main.temp);
-    setTemp_max(response.data.main.temp_max);
-    setTemp_min(response.data.main.temp_min);
-    setDescription(response.data.weather[0].description);
-    setHumidity(response.data.main.humidity);
+    setCity(response.data.city);
+    setCountry(response.data.country);
+    setTemperature(response.data.temperature.current);
+    setFeels(response.data.temperature.feels_like);
+    setPressure(response.data.temperature.pressure);
+    setDescription(response.data.condition.description);
+    setHumidity(response.data.temperature.humidity);
     setWind(response.data.wind.speed);
-    setDate(new Date(response.data.dt * 1000));
+    setDate(new Date(response.data.time * 1000));
     setIcon(
-      `https://openweathermap.org/img/w/${response.data.weather[0].icon}.png`
+      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
     );
   }
 
   function Search() {
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fa4d98a1b55bfa6e99bb8f32851d7b49&units=metric`;
+    let Key = "b93bfbo44bd8a88678e0t635d05036d5";
+    let url = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${Key}&units=metric`;
     axios.get(url).then(handleResponse);
   }
   function handleSubmit(event) {
@@ -99,12 +100,12 @@ export default function Weather(props) {
             <div className="col-6">
               <ul className="conditions">
                 <li>
-                  <span className="type">Max temp: </span>
-                  <span id="max"> {Math.round(temp_max)}</span>℃
+                  <span className="type">Feels like: </span>
+                  <span id="max"> {Math.round(feels)}</span>℃
                 </li>
                 <li>
-                  <span className="type">Min temp: </span>
-                  <span id="min "> {Math.round(temp_min)}</span>℃
+                  <span className="type">Pressure: </span>
+                  <span id="min "> {Math.round(pressure)}</span>Pa
                 </li>
                 <li>
                   <span className="type">Humidity: </span>
