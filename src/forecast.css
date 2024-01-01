@@ -1,0 +1,13 @@
+.forecast {
+  text-align: center;
+}
+.temp-min {
+  opacity: 0.6;
+  margin-left: 5px;
+}
+.icon {
+  size: 40px;
+}
+.forecastDay {
+  opacity: 0.6;
+}
