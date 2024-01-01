@@ -6,7 +6,7 @@ import WeatherTemperature from "./WeatherTemp";
 
 import "./App.css";
 
-export default function Weather() {
+export default function Weather(props) {
   let [ready, setReady] = useState(false);
   let [city, setCity] = useState("");
   let [country, setCountry] = useState("");
@@ -37,6 +37,7 @@ export default function Weather() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    let city = props.city;
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fa4d98a1b55bfa6e99bb8f32851d7b49&units=metric`;
     axios.get(url).then(handleResponse);
   }
@@ -81,7 +82,7 @@ export default function Weather() {
           <div className="row">
             <div className="col-6">
               <div className="condition">
-                <img src={icon} alt="" id="icon" size={52} />
+                <img src={icon} alt="" />
                 <div className="text-capitalize">{description}</div>
 
                 <span className="float-left temperature">
