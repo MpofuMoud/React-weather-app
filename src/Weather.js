@@ -8,7 +8,7 @@ import "./App.css";
 
 export default function Weather(props) {
   let [ready, setReady] = useState(false);
-  let [city, setCity] = useState("");
+  let [city, setCity] = useState(props.city);
   let [country, setCountry] = useState("");
   let [temperature, setTemperature] = useState("");
   let [description, setDescription] = useState("");
@@ -35,9 +35,7 @@ export default function Weather(props) {
     );
   }
 
-  function Search(event) {
-    event.preventDefault();
-
+  function Search() {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fa4d98a1b55bfa6e99bb8f32851d7b49&units=metric`;
     axios.get(url).then(handleResponse);
   }
@@ -122,36 +120,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    return (
-      <div>
-        <h1 className="text-muted">WEATHER APP</h1>
-        <div className="city">
-          <div className="row">
-            <form onSubmit={handleSubmit}>
-              <div className="row">
-                <div className="col-9">
-                  <input
-                    type="search"
-                    placeholder="Enter a city"
-                    autofocus="on"
-                    autocomplete="off"
-                    id="city-input"
-                    className="form-control shadow-sm"
-                    onChange={handleCity}
-                  />
-                </div>
-                <div class="col-3">
-                  <input
-                    type="submit"
-                    value="Search"
-                    className="form-control btn btn-primary shadow-sm w-100"
-                  />
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    );
+    Search();
+    return "loading";
   }
 }
