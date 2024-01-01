@@ -10,30 +10,24 @@ import "./App.css";
 export default function Weather(props) {
   let [ready, setReady] = useState(false);
   let [city, setCity] = useState(props.city);
-  let [country, setCountry] = useState("");
-  let [temperature, setTemperature] = useState("");
-  let [description, setDescription] = useState("");
-  let [humidity, setHumidity] = useState("");
-  let [wind, setWind] = useState("");
-  let [icon, setIcon] = useState("");
-  let [feels, setFeels] = useState("");
-  let [pressure, setPressure] = useState("");
-  let [date, setDate] = useState("");
+  let [weather, setWeather] = useState("");
+
   function handleResponse(response) {
     console.log(response.data);
-    setReady(true);
-    setCity(response.data.city);
-    setCountry(response.data.country);
-    setTemperature(response.data.temperature.current);
-    setFeels(response.data.temperature.feels_like);
-    setPressure(response.data.temperature.pressure);
-    setDescription(response.data.condition.description);
-    setHumidity(response.data.temperature.humidity);
-    setWind(response.data.wind.speed);
-    setDate(new Date(response.data.time * 1000));
-    setIcon(
-      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
-    );
+
+    setWeather({
+      ready: true,
+      city: response.data.city,
+      country: response.data.country,
+      temperature: response.data.temperature.current,
+      feels: response.data.temperature.feels_like,
+      pressure: response.data.temperature.pressure,
+      description: response.data.condition.description,
+      humidity: response.data.temperature.humidity,
+      wind: response.data.wind.speed,
+      date: new Date(response.data.time * 1000),
+      icon: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`,
+    });
   }
 
   function Search() {
@@ -50,7 +44,7 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
 
-  if (ready) {
+  if (weather.ready) {
     return (
       <div className="city">
         <h1 className="text-muted header1">WEATHER APP</h1>
@@ -78,11 +72,11 @@ export default function Weather(props) {
             </div>
           </form>
         </div>
-        <h1 className="location">{city}</h1>
+        <h1 className="location">{weather.city}</h1>
 
-        <div className="country fw-bold">{country}</div>
+        <div className="country fw-bold">{weather.country}</div>
         <div className="update fw-semibold">
-          <FormattedDate date={date} />
+          <FormattedDate date={weather.date} />
         </div>
         <div className="description">
           <div className="row">
@@ -90,12 +84,12 @@ export default function Weather(props) {
               <div className="condition">
                 <div className="row">
                   <div className="col">
-                    <img src={icon} alt="" />
+                    <img src={weather.icon} alt="" />
                   </div>
 
                   <div className=" col">
-                    <WeatherTemperature celsius={temperature} />
-                    <div className="text-capitalize">{description}</div>
+                    <WeatherTemperature celsius={weather.temperature} />
+                    <div className="text-capitalize">{weather.description}</div>
                   </div>
                 </div>
               </div>
@@ -105,25 +99,25 @@ export default function Weather(props) {
               <ul className="conditions">
                 <li>
                   <span className="type">Feels like: </span>
-                  <span id="max"> {Math.round(feels)}</span> ℃
+                  <span id="max"> {Math.round(weather.feels)}</span> ℃
                 </li>
                 <li>
                   <span className="type">Pressure: </span>
-                  <span id="min "> {Math.round(pressure)}</span> Pa
+                  <span id="min "> {weather.pressure}</span> Pa
                 </li>
                 <li>
                   <span className="type">Humidity: </span>
-                  <span id="humidity">{humidity} </span> %
+                  <span id="humidity">{weather.humidity} </span> %
                 </li>
                 <li>
                   <span className="type">Wind speed: </span>
-                  <span id="wind">{wind} </span> km/h
+                  <span id="wind">{weather.wind} </span> km/h
                 </li>
               </ul>
             </div>
           </div>
           <hr />
-          <Forecast city="Krakow" />
+          <Forecast city={weather.city} />
         </div>
       </div>
     );

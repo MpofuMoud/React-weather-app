@@ -13,7 +13,7 @@ export default function Footer() {
       >
         open source code by Moud Mpofu
       </a>
-      ,Hosted on
+      , Hosted on
       <a
         href="https://luxury-kulfi-36e999.netlify.app/"
         target="_blank"
