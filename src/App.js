@@ -9,10 +9,10 @@ export default function App() {
   return (
     <div className="weather-App">
       <div className="container">
-        <Weather city="Krakow" />
+        <Weather />
 
         <hr />
-        <Forecast city="Krakow" />
+        <Forecast />
       </div>
       <Footer />
     </div>

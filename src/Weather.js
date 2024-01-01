@@ -35,11 +35,15 @@ export default function Weather(props) {
     );
   }
 
-  function handleSubmit(event) {
+  function Search(event) {
     event.preventDefault();
-    let city = props.city;
+
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=fa4d98a1b55bfa6e99bb8f32851d7b49&units=metric`;
     axios.get(url).then(handleResponse);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    Search();
   }
 
   function handleCity(event) {
@@ -49,28 +53,30 @@ export default function Weather(props) {
   if (ready) {
     return (
       <div className="city">
+        <h1 className="text-muted">WEATHER APP</h1>
         <div className="row">
-          <div className="col">
-            <form className="search-form" onSubmit={handleSubmit}>
-              <input
-                type="text"
-                id="search"
-                placeholder="🔍 Change City...."
-                onChange={handleCity}
-              />
-              <input
-                className="searchButton"
-                type="submit"
-                id="searchButton"
-                value="search"
-              />
-            </form>
-          </div>
-          <div className="col">
-            <button type="button" className="currentButton" id="currentButton">
-              Current Location
-            </button>
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="row">
+              <div className="col-9">
+                <input
+                  type="search"
+                  placeholder="Enter a city"
+                  autofocus="on"
+                  autocomplete="off"
+                  id="city-input"
+                  className="form-control shadow-sm"
+                  onChange={handleCity}
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="Search"
+                  className="form-control btn btn-primary shadow-sm w-100"
+                />
+              </div>
+            </div>
+          </form>
         </div>
         <h1 className="location">{city}</h1>
 
@@ -117,28 +123,32 @@ export default function Weather(props) {
     );
   } else {
     return (
-      <div className="city">
-        <div className="row">
-          <div className="col">
-            <form className="search-form" onSubmit={handleSubmit}>
-              <input
-                type="text"
-                id="search"
-                placeholder="🔍 Search City...."
-                onChange={handleCity}
-              />
-              <input
-                className="searchButton"
-                type="submit"
-                id="searchButton"
-                value="search"
-              />
+      <div>
+        <h1 className="text-muted">WEATHER APP</h1>
+        <div className="city">
+          <div className="row">
+            <form onSubmit={handleSubmit}>
+              <div className="row">
+                <div className="col-9">
+                  <input
+                    type="search"
+                    placeholder="Enter a city"
+                    autofocus="on"
+                    autocomplete="off"
+                    id="city-input"
+                    className="form-control shadow-sm"
+                    onChange={handleCity}
+                  />
+                </div>
+                <div class="col-3">
+                  <input
+                    type="submit"
+                    value="Search"
+                    className="form-control btn btn-primary shadow-sm w-100"
+                  />
+                </div>
+              </div>
             </form>
-          </div>
-          <div className="col">
-            <button type="button" className="currentButton" id="currentButton">
-              Current Location
-            </button>
           </div>
         </div>
       </div>
