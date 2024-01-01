@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import WeatherTemperature from "./WeatherTemp";
+import Forecast from "./Forecast";
 
 import "./App.css";
 
@@ -51,7 +52,7 @@ export default function Weather(props) {
   if (ready) {
     return (
       <div className="city">
-        <h1 className="text-muted">WEATHER APP</h1>
+        <h1 className="text-muted header1">WEATHER APP</h1>
         <div className="row">
           <form onSubmit={handleSubmit}>
             <div className="row">
@@ -117,6 +118,8 @@ export default function Weather(props) {
             </div>
           </div>
         </div>
+        <hr />
+        <Forecast city="Krakow" />
       </div>
     );
   } else {

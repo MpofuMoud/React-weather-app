@@ -2,13 +2,15 @@ import React from "react";
 import "./forecast.css";
 
 export default function WeatherForecastDay(props) {
+  let icons = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${props.data.condition.icon}.png`;
+
   function day() {
     let date = new Date(props.data.temperature.day * 1000);
     let day = date.getDay();
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
     return days[day];
   }
-  let icons = `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${props.data.condition.icon}.png`;
 
   return (
     <div>

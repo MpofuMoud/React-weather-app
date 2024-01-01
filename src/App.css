@@ -91,9 +91,14 @@ p {
 .type {
   opacity: 0.7;
 }
-.header {
+.header2 {
   color: rgb(51, 120, 224);
   font-size: 15px;
+  font-family: cursive;
+  font-weight: lighter;
+}
+.header1 {
+  font-size: 35px;
   font-family: cursive;
   font-weight: lighter;
 }
@@ -102,4 +107,7 @@ p {
   text-align: left;
   margin-left: 40px;
   opacity: 0.8;
+}
+.condition img {
+  size: 200px;
 }

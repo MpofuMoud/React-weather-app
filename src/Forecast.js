@@ -23,7 +23,7 @@ export default function Forecast(props) {
     console.log(forecast);
     return (
       <div className="forecast">
-        <div className="header">
+        <div className="header2">
           <em>📅 Daily Forecast</em>
         </div>
         <div className="dailyForecast" id="dailyforecast"></div>
@@ -47,7 +47,6 @@ export default function Forecast(props) {
   } else {
     let apiKey = "b93bfbo44bd8a88678e0t635d05036d5";
     let city = props.city;
-
     let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
     axios.get(apiUrl).then(handleResponse);
     return null;
